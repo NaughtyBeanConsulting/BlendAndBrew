@@ -5,15 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Spilled it — Blend and Brew</title>
   <meta name="robots" content="noindex">
-  <script>
-    // GitHub Pages serves this page for every missing path, however deep, so pin
-    // relative URLs to the site root before any stylesheet or script loads.
-    (function () {
-      var seg = location.pathname.split("/")[1];
-      var root = /\.github\.io$/.test(location.hostname) && seg ? "/" + seg + "/" : "/";
-      document.write('<base href="' + root + '">');
-    })();
-  </script>
+  <!-- Served for missing URLs at any depth; the deploy workflow rewrites this to the site's base path. -->
+  <base href="/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

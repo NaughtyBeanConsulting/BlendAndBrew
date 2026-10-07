@@ -22,19 +22,26 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/configure-pages@v5
+      - id: pages
+        uses: actions/configure-pages@v6
 
       # Publish only what the site uses — not img/ (source artwork), tools/ or the README.
+      # 404.html is served for missing URLs at any depth, so pin its <base> to the
+      # site root ("/BlendAndBrew/" here, "/" on a custom domain).
       - name: Assemble site
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
         run: |
           mkdir _site
           cp -R index.html 404.html css js assets _site/
+          sed -i "s|<base href=\"/\">|<base href=\"${BASE_PATH}/\">|" _site/404.html
+          grep -q "<base href=\"${BASE_PATH}/\">" _site/404.html
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: _site
 
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
