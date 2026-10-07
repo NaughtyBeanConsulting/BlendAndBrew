@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spilled it — Blend and Brew</title>
+  <meta name="robots" content="noindex">
+  <script>
+    // GitHub Pages serves this page for every missing path, however deep, so pin
+    // relative URLs to the site root before any stylesheet or script loads.
+    (function () {
+      var seg = location.pathname.split("/")[1];
+      var root = /\.github\.io$/.test(location.hostname) && seg ? "/" + seg + "/" : "/";
+      document.write('<base href="' + root + '">');
+    })();
+  </script>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Schibsted+Grotesk:wght@400;700&family=Yellowtail&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .spill { width: var(--wrap); margin: 0 auto; min-height: calc(100dvh - 90px); display: grid; place-content: center; justify-items: center; text-align: center; padding: 2rem 0 4rem; }
+    .spill-art { position: relative; width: min(420px, 90vw); height: 230px; }
+    .puddle { position: absolute; left: 4%; right: 2%; bottom: 14px; height: 64px; }
+    .spill-art .cup { position: absolute; left: 50%; bottom: 40px; width: 150px; transform: translateX(-30%) rotate(-96deg); transform-origin: 50% 80%; }
+    .spill-art .cup svg { width: 100%; height: auto; }
+    .spill h1 { font-size: clamp(4.4rem, 13vw, 9rem); margin-top: 1rem; }
+    .spill .script { font-size: clamp(1.8rem, 4vw, 2.4rem); color: var(--pink-ink); transform: rotate(-3deg); margin: .2rem 0 1rem; }
+    .spill p.lede { margin: 0 auto 1.8rem; text-align: center; }
+    .spill .add { text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="./" aria-label="Blend and Brew — home"><img src="assets/logo-256.webp" alt="" width="64" height="64"></a>
+  </header>
+  <main class="spill">
+    <div class="spill-art" aria-hidden="true">
+      <svg class="puddle" viewBox="0 0 400 64" preserveAspectRatio="none"><path d="M30 34C10 30 6 14 34 12c30-2 52 8 90 4 40-4 70-14 120-10 44 4 92 2 120 12 26 10 14 30-16 32-34 2-40 10-84 10-38 0-60-8-100-6-30 2-46 10-80 8-26-2-30-14-4-18z" fill="#F7B9C7" stroke="#161211" stroke-width="2.5"/><ellipse cx="120" cy="26" rx="22" ry="5" fill="#fff" opacity=".6"/></svg>
+      <div class="cup is-full" data-spilled></div>
+    </div>
+    <h1 class="display">Spilled it.</h1>
+    <p class="script">this page doesn’t exist</p>
+    <p class="lede">Whatever was meant to be here has gone everywhere. The menu’s still standing, though.</p>
+    <a class="add add--solid" href="./">Back to the menu →</a>
+  </main>
+  <script src="js/drinks.js"></script>
+  <script>
+    document.body.insertAdjacentHTML("afterbegin", BNB.sprite());
+    document.querySelector("[data-spilled]").innerHTML = BNB.renderCup(BNB.byId("shake-strawberry"));
+  </script>
+</body>
+</html>

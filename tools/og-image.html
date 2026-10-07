@@ -1,0 +1,37 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Schibsted+Grotesk:wght@500&family=Yellowtail&display=swap">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  html,body{width:1200px;height:630px;overflow:hidden}
+  body::after{opacity:.8}
+  .og{position:relative;width:1200px;height:630px;display:grid;grid-template-columns:590px 1fr;align-items:center;padding:0 0 0 64px}
+  .og .kicker{font-size:2.3rem}
+  .og h1{font-size:5.4rem;margin-top:.5rem}
+  .og h1 .script{font-size:.56em;color:var(--pink-ink);display:block;transform:rotate(-4deg);transform-origin:left;margin:.1em 0 0 .06em}
+  .og h1 span{display:block}
+  .prices{display:flex;gap:1.6rem;margin-top:1.8rem;font:900 2.6rem/1 var(--display)}
+  .cups{position:relative;height:630px}
+  .disc{position:absolute;width:470px;height:470px;border-radius:50%;background:var(--pink);opacity:.45;left:38px;top:80px}
+  .ring{position:absolute;left:14px;top:56px;width:518px;height:518px}
+  .row{position:absolute;left:0;right:20px;bottom:58px;display:flex;align-items:flex-end;justify-content:center;gap:6px}
+  .row .cup svg{height:auto}
+  .brandrow{display:flex;align-items:center;gap:14px}.brandrow img{width:92px}
+</style></head><body>
+<div class="og">
+  <div>
+    <div class="brandrow"><img src="../assets/logo-256.webp" alt=""><p class="script kicker">made fresh, just for you <span class="heart">♥</span></p></div>
+    <h1 class="display"><span>Thick shakes.</span><span>Icy slushies.</span><span class="script">one very good</span><span>vegan frappe.</span></h1>
+    <div class="prices"><span class="brush brush--pink">R35</span><span class="brush brush--leaf">R45</span><span class="brush brush--red">R50</span></div>
+  </div>
+  <div class="cups">
+    <div class="disc"></div>
+    <svg class="ring" viewBox="0 0 200 200"><path d="M23 46A94 94 0 0 1 153.9 23M183 55.9A94 94 0 1 1 9.2 75.7" fill="none" stroke="#161211" stroke-width="1.2" stroke-linecap="round"/></svg>
+    <div class="row" id="row"></div>
+  </div>
+</div>
+<script src="../js/drinks.js"></script>
+<script>
+document.body.insertAdjacentHTML('afterbegin',BNB.sprite());
+const row=document.getElementById('row');
+[['shake-strawberry',158],['slush-mango',158],['frappe-vegan',158]].forEach(([id,w])=>{const d=document.createElement('div');d.className='cup is-full';d.style.width=w+'px';d.innerHTML=BNB.renderCup(BNB.byId(id));row.appendChild(d);});
+</script></body></html>
